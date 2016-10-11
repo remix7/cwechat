@@ -1,0 +1,133 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="Olive Enterprise">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/images/img/favicon.ico">
+<title>Cynara</title>
+<!-- BEGIN STYLESHEET-->
+<link
+	href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/styles/css/bootstrap-reset.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/styles/assets/font-awesome/css/font-awesome.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/styles/css/style.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/styles/css/style-responsive.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/styles/assets/morris.js-0.4.3/morris.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/styles/css/clndr.css"
+	rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/html5shiv.js">
+	
+</script>
+<script src="${pageContext.request.contextPath}/js/respond.min.js">
+	
+</script>
+<!-- BEGIN JS -->
+<script src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
+<!-- BASIC JQUERY 1.8.3 LIB. JS -->
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<!-- BOOTSTRAP JS -->
+<script
+	src="${pageContext.request.contextPath}/js/jquery.dcjqaccordion.2.7.js"></script>
+<!-- ACCORDIN JS -->
+<script
+	src="${pageContext.request.contextPath}/js/jquery.scrollTo.min.js"></script>
+<!-- SCROLLTO JS -->
+<script src="${pageContext.request.contextPath}/js/jquery.nicescroll.js"></script>
+<!-- NICESCROLL JS -->
+<script src="${pageContext.request.contextPath}/js/respond.min.js"></script>
+<!-- RESPOND JS -->
+<script src="${pageContext.request.contextPath}/js/jquery.sparkline.js"></script>
+<!-- SPARKLINE JS -->
+<script src="${pageContext.request.contextPath}/js/sparkline-chart.js"></script>
+<!-- SPARKLINE CHART JS -->
+<script src="${pageContext.request.contextPath}/js/common-scripts.js"></script>
+<!-- BASIC COMMON JS -->
+<script src="${pageContext.request.contextPath}/js/count.js"></script>
+<!-- COUNT JS -->
+<!--Morris-->
+<script
+	src="${pageContext.request.contextPath}/styles/assets/morris.js-0.4.3/morris.min.js"></script>
+<!-- MORRIS JS -->
+<script
+	src="${pageContext.request.contextPath}/styles/assets/morris.js-0.4.3/raphael-min.js"></script>
+<!-- MORRIS  JS -->
+<script src="${pageContext.request.contextPath}/js/chart.js"></script>
+<!-- CHART JS -->
+<!--Calendar-->
+<script src="${pageContext.request.contextPath}/js/calendar/clndr.js"></script>
+<!-- CALENDER JS -->
+<script
+	src="${pageContext.request.contextPath}/js/calendar/evnt.calendar.init.js"></script>
+<!-- CALENDER EVENT JS -->
+<script
+	src="${pageContext.request.contextPath}/js/calendar/moment-2.2.1.js"></script>
+<!-- CALENDER MOMENT JS -->
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+<!-- UNDERSCORE JS -->
+<script
+	src="${pageContext.request.contextPath}/styles/assets/jquery-knob/js/jquery.knob.js"></script>
+<!-- JQUERY KNOB JS -->
+<script>
+	//knob
+	$(".knob").knob();
+</script>
+<!-- END JS -->
+</head>
+<body>
+	<!-- BEGIN SECTION -->
+	<section id="container">
+		<!-- BEGIN HEADER -->
+		<header class="header white-bg">
+			<!-- SIDEBAR TOGGLE BUTTON -->
+			<div class="sidebar-toggle-box">
+				<div data-placement="right" class="fa fa-bars tooltips"></div>
+			</div>
+			<!-- SIDEBAR TOGGLE BUTTON  END-->
+			<a href="index.html" class="logo"> ${sessionScope.activeUser.username} <span>
+					Admin </span>
+			</a>
+			<div class="top-nav ">
+				<ul class="nav pull-right top-menu">
+					<li><input type="text" class="form-control search"
+						placeholder="Search"></li>
+					<li class="dropdown"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <img alt=""
+							src="${pageContext.request.contextPath}/images/img/avatar1_small.jpg"><span
+							class="username"> ${activeUser.username}</span> <b class="caret">
+						</b>
+					</a>
+						<ul class="dropdown-menu extended logout">
+							<li class="log-arrow-up"></li>
+							<li><a href="refuse.jsp"> <i class=" fa fa-suitcase">
+								</i> <fmt:message key="i18n.Profile" />
+							</a></li>
+							<li><a href="#"> <i class="fa fa-cog"> </i> <fmt:message
+										key="i18n.Settings" />
+							</a></li>
+							<li><a href="#"> <i class="fa fa-bell-o"> </i> <fmt:message
+										key="i18n.Notification" />
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/logout">
+									<i class="fa fa-key"> </i> <fmt:message key="i18n.LogOut" />
+							</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</header>

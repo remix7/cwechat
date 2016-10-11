@@ -1,0 +1,9 @@
+<%@ page language="java" pageEncoding="utf-8"%> 
+<footer class="site-footer">
+	<div class="text-center">
+	Copyright  2016 <a href="http://www.cynara.top" target="_blank"> Cynara </a>
+		<a href="http://www.miitbeian.gov.cn/" target="_blank">皖ICP备16019279号</a> 
+	</div>
+</footer>
+</body>
+</html>

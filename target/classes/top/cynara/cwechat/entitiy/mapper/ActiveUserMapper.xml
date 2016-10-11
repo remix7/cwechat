@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.cynara.cwechat.entitiy.mapper.ActiveUserMapper">
+	<cache />
+	<select id="findAllMenuBySysUserId" parameterType="string"
+		resultType="SysPermission">
+		SELECT id,NAME,TYPE,url,percode,available FROM c_permission
+		WHERE TYPE = 'menu' AND id IN (
+		SELECT c_permission_id FROM
+		c_role_permission WHERE c_role_id = (
+		SELECT c_role_id FROM c_user_role
+		WHERE c_user_id =
+		'#{id}'
+		)
+		)
+	</select>
+	<select id="findAllPermissionByUserId" parameterType="string"
+		resultType="SysPermission">
+		SELECT id,NAME,TYPE,url,percode,available FROM c_permission
+		WHERE TYPE = 'permission' AND id IN (
+		SELECT c_permission_id FROM c_role_permission WHERE c_role_id = (
+		SELECT c_role_id FROM c_user_role WHERE c_user_id =
+		'#{id}'
+		)
+		)
+	</select>
+</mapper>
