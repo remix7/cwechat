@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.cynara.cwechat.entitiy.mapper.ReplayWechatMessageMapper">
+	<cache />
+	<resultMap type="ReplayWechatMessage" id="baseResultMap">
+		<id property="id" column="id" />
+		<result property="msgType" column="msgType" />
+		<result property="toUserName" column="toUserName" />
+		<result property="fromUserName" column="fromUserName" />
+		<result property="createTime" column="createTime" />
+		<result property="context" column="context" />
+		<result property="mediaId" column="mediaId" />
+		<result property="title" column="title" />
+		<result property="description" column="description" />
+		<result property="musicURL" column="musicURL" />
+		<result property="hqMusicUrl" column="hqMusicUrl" />
+		<result property="thumbMediaId" column="thumbMediaId" />
+		<result property="picUrl" column="picUrl" />
+		<result property="url" column="url" />
+		<result property="articleCount" column="articleCount" />
+		<result property="userId" column="userId" />
+	</resultMap>
+	<insert id="insert" parameterType="ReplayWechatMessage">
+		INSERT INTO c_replay_wechat_message(id,msgType,toUserName,fromUserName,createTime,context,mediaId,title,description,musicURL,hqMusicUrl,thumbMediaId,picUrl,url,articleCount,userId) VALUES (#{id},#{msgType},#{toUserName},#{fromUserName},#{createTime},#{context},#{mediaId},#{title},#{description},#{musicURL},#{hqMusicUrl},#{thumbMediaId},#{picUrl},#{url},#{articleCount},#{userId})
+	</insert>
+	<delete id="delete" parameterType="string">
+		DELETE FROM
+		c_replay_wechat_message WHERE id=#{id}
+	</delete>
+	<update id="update" parameterType="ReplayWechatMessage">
+		UPDATE
+		c_replay_wechat_message SET
+		msgType=#{msgType},toUserName=#{toUserName},fromUserName=#{fromUserName},createTime=#{createTime},context=#{context},mediaId=#{mediaId},title=#{title},description=#{description},
+		musicURL=#{musicURL},hqMusicUrl=#{hqMusicUrl},thumbMediaId=#{thumbMediaId},picUrl=#{picUrl},url=#{url},articleCount=#{articleCount},userId=#{userId}
+		WHERE id='${id}'
+	</update>
+	<select id="findById" parameterType="string" resultMap="baseResultMap">
+		SELECT * FROM c_replay_wechat_message WHERE id=#{id}
+	</select>
+	<select id="findAll" resultMap="baseResultMap">
+		SELECT * FROM
+		c_replay_wechat_message
+	</select>
+	<select id="findAllByUserId" resultMap="baseResultMap" parameterType="string">
+		SELECT * FROM
+		c_replay_wechat_message WHERE userId=#{userId}
+	</select>
+
+</mapper>
