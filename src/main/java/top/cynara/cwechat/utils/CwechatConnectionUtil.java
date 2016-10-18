@@ -123,7 +123,5 @@ public class CwechatConnectionUtil {
 		
 		return access_token;
 	}
-	public static void main(String[] args) {
-		System.out.println( getAccesssToken("wx2c480b56a658c0ab", "dc51c5de30eaf742716f752625e0bc75"));
-	}
+	
 }
