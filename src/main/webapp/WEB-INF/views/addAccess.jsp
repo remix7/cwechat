@@ -53,6 +53,14 @@
                         : cynara
                       </p>
                     </div>
+                    <div class="bio-row">
+                      <p>
+                        <span>
+                         <fmt:message key="i18n.OriginalId"/>
+                        </span>
+                        : <fmt:message key="i18n.info.OriginalId"/>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </section>
@@ -87,6 +95,14 @@
                            <input type=text name="encodingAESKey" value="${access.encodingAESKey}"  class="form-control">
                            <p class="help-block"><fmt:message key="i18n.info.encodingAESKey"/></p>
                            <p class="help-block">${encodingAESKey}</p>
+                        </div>
+                     </div>
+                     <div class="form-group has-warning">
+                        <label class="col-lg-2 control-label"><fmt:message key="i18n.OriginalId"/> </label>
+                        <div class="col-lg-10">
+                           <input type=text name="originalId" value="${access.OriginalId}"  class="form-control">
+                           <p class="help-block"><fmt:message key="i18n.info.OriginalId"/></p>
+                           <p class="help-block">${originalId}</p>
                         </div>
                      </div>
                      <div class="form-group has-warning">

@@ -14,9 +14,8 @@
 					<li><a href="${pageContext.request.contextPath}/viewAccess"><fmt:message key="i18n.menu.Viewaccess"/> </a></li>
 					<li><a href="${pageContext.request.contextPath}/addAccess"><fmt:message key="i18n.menu.Addaccess"/> </a>
 					</li>
-					<li><a href="language_switch_bar.html"> Language Bar </a></li>
-					<li><a href="email_template.html" target="_blank"> Email
-							Templates </a></li>
+					<li><a href="${pageContext.request.contextPath}/messageList"> <fmt:message key="i18n.menu.messageList"/> </a></li>
+					<li><a href="${pageContext.request.contextPath}/followme"> <fmt:message key="i18n.menu.usermanagerment"/> </a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:;"> <i
 					class="fa fa-book"> </i> <span> UI Elements </span> <span
