@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.cynara.cwechat.entitiy.mapper.CwechatFollowUserMapper">
+	<resultMap type="CwechatFollowUser" id="baseResultMap">
+		<id property="id" column="id"  />
+		<result property="openId" column="openId" />
+		<result property="createDate" column="createDate" />
+		<result property="accessId" column="accessId"/>
+	</resultMap>
+	<insert id="insert" parameterType="CwechatFollowUser">
+		INSERT INTO c_cwechat_follow_user(openId,createDate,accessId) VALUES (#{openId},#{createDate},#{accessId})
+	</insert>
+	<select id="findAllByAccessId" resultMap="baseResultMap" parameterType="string">
+		SELECT * FROM c_cwechat_follow_user WHERE accessId=#{accessId}
+	</select>
+	<select id="findAllFollowOpenIdByAccessId" resultType="string" parameterType="string">
+		SELECT openId FROM c_cwechat_follow_user WHERE accessId=#{accessId}
+	</select>
+</mapper>
