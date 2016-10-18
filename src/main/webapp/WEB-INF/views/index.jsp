@@ -58,5 +58,5 @@
 
 <!-- END MAIN CONTENT -->
 <!-- BEGIN FOOTER -->
-<%@ include file="/WEB-INF/views/public/footer.jspf"%>
+
 <!-- END  FOOTER -->

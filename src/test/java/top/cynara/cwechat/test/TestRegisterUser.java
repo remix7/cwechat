@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import top.cynara.cwechat.entitiy.CwechatAccess;
 import top.cynara.cwechat.entitiy.RegisterUser;
 import top.cynara.cwechat.utils.HashUtil;
 
@@ -27,6 +28,11 @@ public class TestRegisterUser {
 		context = new ClassPathXmlApplicationContext("beans.xml");
 		sf = (SqlSessionFactory) context.getBean("sessionFactory");
 		session = sf.openSession();
+	}
+	@Test
+	public void findAllCwechat() throws Exception {
+		List<CwechatAccess> cList = session.selectList("top.cynara.cwechat.entitiy.mapper.CwechatAccessMapper.findAllByUserId","9cca2f3d-c80a-4f60-8dd5-ced0cf9eb600");
+		System.out.println(cList.size());
 	}
 	@Test
 	public void findAll() throws Exception {

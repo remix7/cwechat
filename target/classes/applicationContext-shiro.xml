@@ -46,14 +46,18 @@
 		<property name="filterChainDefinitions">
 			<value>
 				<!-- 对静态资源的访问 -->
+				/upload.jsp=anon
 				/images/**=anon
 				/js/**=anon
+				/accessWechat=anon
 				/styles/**=anon
 				/i18n**=anon
 				/register**=anon
 				<!-- 验证码可以正常访问 -->
 				/ValidateCode = anon
+				<!-- 
 				/index** = user
+				-->
 				<!-- 只要请logout.action地址  shiro会清除session-->
 				/logout**=logout
 				<!--/**=authc  匿名方法 -->

@@ -27,9 +27,26 @@ CREATE TABLE `c_cwechat_access` (
   `encodingAESKey` varchar(50) default NULL,
   `accessDate` datetime default NULL,
   `isTrue` varchar(1) default NULL,
+  `originalId` varchar(20) default NULL,
   `userId` varchar(40) default NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `c_cwechat_access_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `c_register_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `c_cwechat_follow_user` */
+
+DROP TABLE IF EXISTS `c_cwechat_follow_user`;
+
+CREATE TABLE `c_cwechat_follow_user` (
+  `id` int(11) NOT NULL auto_increment,
+  `openId` varchar(37) default NULL,
+  `createDate` datetime default NULL,
+  `accessId` varchar(40) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `accessId` (`accessId`),
+  CONSTRAINT `c_cwechat_follow_user_ibfk_1` FOREIGN KEY (`accessId`) REFERENCES `c_cwechat_access` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `c_permission` */
 
@@ -42,6 +59,34 @@ CREATE TABLE `c_permission` (
   `url` varchar(100) default NULL,
   `percode` varchar(100) default NULL,
   `available` varchar(1) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `c_receive_wechat_message` */
+
+DROP TABLE IF EXISTS `c_receive_wechat_message`;
+
+CREATE TABLE `c_receive_wechat_message` (
+  `id` varchar(40) NOT NULL,
+  `msgType` varchar(10) default NULL,
+  `toUserName` varchar(35) default NULL,
+  `fromUserName` varchar(35) default NULL,
+  `createTime` varchar(15) default NULL,
+  `context` text,
+  `picUrl` varchar(200) default NULL,
+  `mediaId` varchar(70) default NULL,
+  `thumbMediaId` varchar(70) default NULL,
+  `format` varchar(20) default NULL,
+  `recognition` text,
+  `location_X` varchar(12) default NULL,
+  `location_Y` varchar(12) default NULL,
+  `scale` varchar(100) default NULL,
+  `label` varchar(100) default NULL,
+  `title` varchar(100) default NULL,
+  `description` text,
+  `url` varchar(200) default NULL,
+  `msgId` varchar(70) default NULL,
+  `userId` varchar(40) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -59,6 +104,30 @@ CREATE TABLE `c_register_user` (
   `register_time` datetime default NULL,
   `salt` varchar(40) default NULL,
   `locked` varchar(1) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Table structure for table `c_replay_wechat_message` */
+
+DROP TABLE IF EXISTS `c_replay_wechat_message`;
+
+CREATE TABLE `c_replay_wechat_message` (
+  `id` varchar(40) NOT NULL,
+  `msgType` varchar(10) default NULL,
+  `toUserName` varchar(40) default NULL,
+  `fromUserName` varchar(40) default NULL,
+  `createTime` varchar(15) default NULL,
+  `context` text,
+  `mediaId` varchar(70) default NULL,
+  `title` text,
+  `description` text,
+  `musicURL` varchar(200) default NULL,
+  `hqMusicUrl` varchar(200) default NULL,
+  `thumbMediaId` varchar(70) default NULL,
+  `picUrl` text,
+  `url` text,
+  `articleCount` varchar(2) default NULL,
+  `receiveId` varchar(40) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

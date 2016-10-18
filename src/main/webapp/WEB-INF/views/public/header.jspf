@@ -5,9 +5,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="Olive Enterprise">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/images/img/favicon.ico">
 <title>Cynara</title>
@@ -75,8 +75,6 @@
 <script
 	src="${pageContext.request.contextPath}/js/calendar/evnt.calendar.init.js"></script>
 <!-- CALENDER EVENT JS -->
-<script
-	src="${pageContext.request.contextPath}/js/calendar/moment-2.2.1.js"></script>
 <!-- CALENDER MOMENT JS -->
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
@@ -131,3 +129,4 @@
 				</ul>
 			</div>
 		</header>
+	</section>

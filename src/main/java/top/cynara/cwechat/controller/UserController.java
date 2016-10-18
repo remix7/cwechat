@@ -58,6 +58,7 @@ public class UserController {
 			log.debug(user.getUsername()+":用户注册验证码填写错误");
 			//为了在页面使用if判断  如果出错此值不为空就能显示国际化的提示消息
 			map.put("randomCode", "!");
+			map.put("user", user);
 			return "register";
 		}
 		//判断是否有错误

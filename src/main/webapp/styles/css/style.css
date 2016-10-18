@@ -253,7 +253,7 @@ a, a:hover, a:focus {
 	height: 17px;
 	width: 17px;
 	display: inline-block;
-	background: url(../img/nav-expand.png) no-repeat top;
+	background: url("../../images/img/nav-expand.png") no-repeat top;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -263,7 +263,7 @@ a, a:hover, a:focus {
 }
 
 .active .dcjq-icon {
-	background: url(../img/nav-expand.png) no-repeat bottom;
+	background: url("../../images/img/nav-expand.png") no-repeat bottom;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -757,7 +757,7 @@ ul.top-menu>li>a:hover, ul.top-menu>li>a:focus {
 	transition: all .3s ease;
 	border: 1px solid #fff;
 	box-shadow: none;
-	background: url("../img/search-icon.png") no-repeat 10px 8px;
+	background: url("../../images/img/search-icon.png") no-repeat 10px 8px;
 	padding: 0 5px 0 35px;
 	color: #fff;
 }
@@ -5417,13 +5417,10 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 
 /*footer*/
 .site-footer {
-	background: #2A3542;
+	
+	background: #5b6e84;
 	color: #fff;
-	padding: 5px 0;
-	position:absolute; 
-	bottom:0px;
-	width:100%; 
-	clear:both;
+	padding: 10px 0;
 }
 
 .site-footer a {
