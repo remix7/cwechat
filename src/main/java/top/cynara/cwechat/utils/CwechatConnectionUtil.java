@@ -7,10 +7,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 /**
  * @ClassName CwechatConnectionUtil 
@@ -22,6 +26,85 @@ import org.json.JSONObject;
  */
 public class CwechatConnectionUtil {
 	private static Logger log = Logger.getLogger(CwechatConnectionUtil.class);
+	/**
+	 * @Title findUserByOpenId 
+	 * @Description 根据微信id获取用户信息  不存数据库的原因是因为 这个更加真实
+	 * @param appid
+	 * @param secret
+	 * @param openId
+	 * @return       
+	 * @author Cynara-remix
+	 * @Date 2016年10月18日 下午9:09:46
+	 */
+	public static Map<String, String> findUserByOpenId(String appid,String secret,String openId){
+		Map<String, String> resMap = new HashMap<String, String>();
+		String access_token = getAccesssToken(appid, secret);
+		try {
+			URL url = new URL("https://api.weixin.qq.com/cgi-bin/user/info?access_token="+access_token+"&openid="+openId+"&lang=zh_CN");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			conn.connect();
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			JSONObject jb = new JSONObject(br.readLine());
+			Iterator<String> it  = jb.keys();
+			while(it.hasNext()){
+				String key = String.valueOf(it.next());
+				String value = jb.get(key)+"";
+				resMap.put(key, value);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resMap;
+		
+	}
+	/**
+	 * @Title findAllFollwOperId 
+	 * @Description 获取微信关注openId
+	 * @param appid
+	 * @param secret
+	 * @param nextId
+	 * @return       
+	 * @author Cynara-remix
+	 * @Date 2016年10月18日 下午7:19:36
+	 */
+	public static List<String> findAllFollwOperId(String appid,String secret,String nextId){
+		List<String> list = new ArrayList<String>();
+		String access_token = getAccesssToken(appid, secret);
+		if(access_token==null){
+			return null;
+		}
+		try {
+			URL  url = null;
+			if("-1".equals(nextId)){
+				url = new URL("https://api.weixin.qq.com/cgi-bin/user/get?access_token="+access_token);
+			}else{
+				url = new URL("https://api.weixin.qq.com/cgi-bin/user/get?access_token="+access_token+"&next_openid="+nextId);
+			}
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			conn.connect();
+			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line = in.readLine();
+			in.close();
+			JSONObject jb = new JSONObject(line);
+			JSONObject jb2 = new JSONObject(jb.get("data").toString());
+			JSONArray jsonArray = jb2.getJSONArray("openid");
+			for(int i=0;i<jsonArray.length();i++){
+				list.add(jsonArray.getString(i));
+			}
+		} catch (Exception e) {
+			
+		}
+		return list;
+	}
 	/**
 	 * @Title setWechatMenu 
 	 * @Description 设置公众号的菜单  这里map转json  构建map是难点
@@ -123,5 +206,8 @@ public class CwechatConnectionUtil {
 		
 		return access_token;
 	}
-	
+	public static void main(String[] args) {
+		findUserByOpenId("wx2c480b56a658c0ab", "dc51c5de30eaf742716f752625e0bc75", "ooz78sg51_sFZtedyD3JbuIjmdws");
+		
+	}
 }
