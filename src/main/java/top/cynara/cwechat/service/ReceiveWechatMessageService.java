@@ -16,6 +16,6 @@ public interface ReceiveWechatMessageService {
 	void delete(String id);
 	void update(ReceiveWechatMessage message);
 	ReceiveWechatMessage findById(String id);
-	List<ReceiveWechatMessage> findAllByUserId(String userId);
+	List<ReceiveWechatMessage> findAllByToUserName(String toUserName);
 	List<ReceiveWechatMessage> findAll();
 }
