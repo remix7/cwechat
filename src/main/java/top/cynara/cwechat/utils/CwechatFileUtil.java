@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -100,25 +102,60 @@ public class CwechatFileUtil {
 	 * @author Cynara-remix
 	 * @Date 2016年10月15日 下午10:06:47
 	 */
-	public static void wechatFileDownload(HttpServletResponse response, String access_token,String mediaId) {
+	public static void wechatFileDownload(HttpServletResponse response,HttpServletRequest request, String access_token,String mediaId) {
 		OutputStream out = null;
 		InputStream in  = null;
 		try {
+			//判断这个里面有没有这个文件
+			String path =  request.getSession().getServletContext().getRealPath("/WEB-INF/file");
+			String filename = HashUtil.getShaHash(mediaId, mediaId);
+			File f = new File(path);
+			String[] filenames  = f.list();
+			if(filenames.length>0){
+				for (int i = 0; i < filenames.length; i++) {
+					//这种情况是在文件夹中包含此文件
+					if(filenames[i].contains(filename)){
+						f = new File(path+"/"+filenames[i]);
+						// 设置响应头
+						response.setContentType("application/octet-stream; charset=utf-8");
+						response.setHeader("Content-Disposition",
+								"attachment;filename=" + "Cynara-" + filenames[i]);
+						response.setContentLength(Integer.parseInt(f.length()+""));
+						out = response.getOutputStream();
+						in = new FileInputStream(f);
+						byte b[] = new byte[1024];
+						int len = 0;
+						// 写文件
+						while ((len = in.read(b)) != -1) {
+							out.write(b, 0, len);
+						}
+						out.close();
+						in.close();
+						return;
+					}
+				}
+			}
 			URL url = new URL("https://api.weixin.qq.com/cgi-bin/media/get?access_token="+access_token+"&media_id=" + mediaId);
 			// 将连接打开并转为httpUrlConnection
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			// 连接
 			conn.connect();
-			// 设置响应头
-			response.setContentType("application/octet-stream; charset=utf-8");
 			// 设置文件名
-			String suffix = conn.getHeaderField("Content-Disposition").split("=")[1];
+			String suffix = conn.getHeaderField("Content-Disposition");
+			if(suffix!=null){
+				suffix = suffix.split("=")[1];
+				suffix = suffix.substring(1, suffix.length() - 1);
+				filenames = suffix.split("\\.");
+			}else{
+				return ;
+			}
+			response.setContentType("application/octet-stream; charset=utf-8");
 			response.setHeader("Content-Disposition",
-					"attachment;filename=" + "Cynara-" + suffix.substring(suffix.length() - 10, suffix.length() - 1));
+					"attachment;filename=" + "Cynara-" + filename+"."+filenames[1]);
 			response.setContentLength(Integer.parseInt(conn.getHeaderField("Content-Length")));
 			response.setHeader("Content-Type", conn.getHeaderField("Content-Type"));
-			// 构建输出流
-			out = response.getOutputStream();
+			f = new File(path+"/"+filename+"."+filenames[1]);
+			out = new FileOutputStream(f);
 			// 构建输入流 将URL读取到的资源写入输出流
 			in = conn.getInputStream();
 			byte b[] = new byte[1024];
@@ -127,6 +164,16 @@ public class CwechatFileUtil {
 			while ((len = in.read(b)) != -1) {
 				out.write(b, 0, len);
 			}
+			out.close();
+			in.close();
+			//将文件写到客户端 提供下载
+			out  = response.getOutputStream();
+			in = new FileInputStream(f);
+			while((len = in.read(b))!=-1){
+				out.write(b, 0, len);
+			}
+			in.close();
+			out.close();
 			log.info("mediaId:"+mediaId+" 文件下载成功！");
 		} catch (Exception e) {
 			log.info("mediaId:"+mediaId+" 文件下载失败！"+e);

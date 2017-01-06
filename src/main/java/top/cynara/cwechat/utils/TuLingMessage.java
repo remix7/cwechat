@@ -28,9 +28,9 @@ import top.cynara.cwechat.service.ReplayWechatMessageService;
  * @version V1.0
  */
 public class TuLingMessage {
-	private static String API_URL = "http://www.tuling123.com/openapi/api";
-	private static String API_KEY = "30f1786d28abc487c901f9352999820c";
-	private static String SECRET = "924dc30613c8e02e";
+	private static String API_URL = "*"; //替换为你的图灵url key 。。
+	private static String API_KEY = "*";
+	private static String SECRET = "*";
 
 	public static String getTuLingMessage(ReceiveWechatMessage receiveWechatMessage,
 			ReplayWechatMessageService replayWechatMessageService) {
@@ -83,7 +83,7 @@ public class TuLingMessage {
 		wechatMessage.setCreateTime(new Date().getTime() + "");
 		wechatMessage.setFromUserName(receiveWechatMessage.getToUserName());
 		wechatMessage.setToUserName(receiveWechatMessage.getFromUserName());
-		wechatMessage.setUserId(receiveWechatMessage.getId());
+		wechatMessage.setReceiveId(receiveWechatMessage.getId());
 		// 文本消息
 		if (!jo.containsKey("url") && !jo.containsKey("name") && !jo.containsKey("list") && !jo.containsKey("song")
 				&& !jo.containsKey("author ")) {

@@ -3,6 +3,7 @@ package top.cynara.cwechat.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -39,7 +40,8 @@ public class CwechatFile {
 	}
 
 	@RequestMapping("/download/{mediaId}")
-	public void download(@PathVariable("mediaId") String mediaId, HttpSession session, HttpServletResponse response)
+	public void download(@PathVariable("mediaId") String mediaId, HttpSession session, HttpServletResponse response,
+			HttpServletRequest request)
 			throws IOException {
 		// 获取当前用户
 		ActiveUser user = (ActiveUser) session.getAttribute("activeUser");
@@ -49,7 +51,7 @@ public class CwechatFile {
 		String access_token = CwechatConnectionUtil.getAccesssToken(accessList.get(0).getAppid(),
 				accessList.get(0).getSecret());
 
-		CwechatFileUtil.wechatFileDownload(response, access_token, mediaId);
+		CwechatFileUtil.wechatFileDownload(response,request, access_token, mediaId);
 	}
 
 }

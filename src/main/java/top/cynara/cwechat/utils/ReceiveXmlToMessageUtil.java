@@ -39,7 +39,6 @@ public class ReceiveXmlToMessageUtil {
 	 */
 	public static Map<String, String> parseXml(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		System.out.println("run parseXml");
 		Map<String, String> map = new HashMap<String, String>();
 		InputStream in = request.getInputStream();
 		SAXReader reader = new SAXReader();
@@ -55,7 +54,7 @@ public class ReceiveXmlToMessageUtil {
 
 	/**
 	 * @Title parseMessage
-	 * @Description 从数据库中查询去消息并返回给用户
+	 * @Description 消息返回给用户
 	 * @param string
 	 * @return
 	 * @author Cynara-remix
@@ -67,23 +66,44 @@ public class ReceiveXmlToMessageUtil {
 		String type = map.get("MsgType");
 		receiveWechatMessage.setMsgType(type);
 		receiveWechatMessage.setId(UUID.randomUUID().toString());
+		receiveWechatMessage.setCreateTime(map.get("CreateTime"));
+		// 发送方id
+		receiveWechatMessage.setFromUserName(map.get("FromUserName"));
+		// 开发者账号
+		receiveWechatMessage.setToUserName(map.get("ToUserName"));
+		receiveWechatMessage.setMsgId(map.get("MsgId"));
 		if (MessageType.TEXT_MESSAGE.equals(type)) {
 			receiveWechatMessage.setContext(map.get("Content"));
-			receiveWechatMessage.setCreateTime(map.get("CreateTime"));
-			// 发送方id
-			receiveWechatMessage.setFromUserName(map.get("FromUserName"));
-			// 开发者账号
-			receiveWechatMessage.setToUserName(map.get("ToUserName"));
-			receiveWechatMessage.setMsgId(map.get("MsgId"));
-			messageService.insert(receiveWechatMessage);
-			return TuLingMessage.getTuLingMessage(receiveWechatMessage, replayWechatMessageService);
 		} else if (MessageType.IMAGE_MESSAGE.equals(type)) {
-
+			receiveWechatMessage.setPicUrl(map.get("PicUrl"));
+			receiveWechatMessage.setMediaId(map.get("MediaId"));
+			receiveWechatMessage.setContext("图片");
 		} else if (MessageType.VOICE_MESSAGE.equals(type)) {
-
+			receiveWechatMessage.setMediaId(map.get("MediaId"));
+			receiveWechatMessage.setFormat(map.get("Format"));
+			receiveWechatMessage.setRecognition(map.get("Recognition"));
+			receiveWechatMessage.setContext(map.get("Recognition"));
 		} else if (MessageType.VIDEO_MESSAGE.equals(type)) {
-
+			receiveWechatMessage.setMediaId(map.get("MediaId"));
+			receiveWechatMessage.setThumbMediaId(map.get("ThumbMediaId"));
+			receiveWechatMessage.setContext("视频");
+		}else if(MessageType.SHORTVIDEO_MESSAGE.equals(type)){
+			receiveWechatMessage.setMediaId(map.get("MediaId"));
+			receiveWechatMessage.setThumbMediaId(map.get("ThumbMediaId"));
+			receiveWechatMessage.setContext("小视频");
+		}else if (MessageType.POSOTION_MESSAGE.equals(type)){
+			receiveWechatMessage.setLocation_X(map.get("Location_X"));
+			receiveWechatMessage.setLocation_Y(map.get("Location_Y"));
+			receiveWechatMessage.setScale(map.get("Scale"));
+			receiveWechatMessage.setLabel(map.get("Label"));
+			receiveWechatMessage.setContext(map.get("Label"));
+		}else if(MessageType.LINK_MESSAGE.equals(type)){
+			receiveWechatMessage.setTitle(map.get("Title"));
+			receiveWechatMessage.setDescription(map.get("Description"));
+			receiveWechatMessage.setUrl(map.get("Url"));
+			receiveWechatMessage.setContext(map.get("Title"));
 		}
-		return null;
+		messageService.insert(receiveWechatMessage);
+		return TuLingMessage.getTuLingMessage(receiveWechatMessage, replayWechatMessageService);
 	}
 }
