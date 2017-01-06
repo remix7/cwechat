@@ -205,7 +205,11 @@ public class CwechatConnectionUtil {
 		
 		return access_token;
 	}
+<<<<<<< HEAD
 	public static void main(String[] args) {
 		
 	}
+=======
+	
+>>>>>>> 8454e8acb16d7a57ce4c3091d47a42e8dc2b7d38
 }
