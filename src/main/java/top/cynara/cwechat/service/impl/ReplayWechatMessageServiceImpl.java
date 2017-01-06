@@ -35,8 +35,9 @@ public class ReplayWechatMessageServiceImpl implements ReplayWechatMessageServic
 		return mapper.findAll();
 	}
 
-	public List<ReplayWechatMessage> findByUserId(String userId) {
-		return mapper.findByUserId(userId);
+	public ReplayWechatMessage findByReceiveId(String receiveId) {
+		return mapper.findByReceiveId(receiveId);
 	}
 
+	
 }

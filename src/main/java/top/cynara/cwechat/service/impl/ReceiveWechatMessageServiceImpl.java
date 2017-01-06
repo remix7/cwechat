@@ -38,12 +38,12 @@ public class ReceiveWechatMessageServiceImpl implements ReceiveWechatMessageServ
 		return mapper.findById(id);
 	}
 
-	public List<ReceiveWechatMessage> findAllByUserId(String userId) {
-		return mapper.findAllByUserId(userId);
-	}
-
 	public List<ReceiveWechatMessage> findAll() {
 		return mapper.findAll();
+	}
+
+	public List<ReceiveWechatMessage> findAllByToUserName(String toUserName) {
+		return mapper.findAllByToUserName(toUserName);
 	}
 
 }

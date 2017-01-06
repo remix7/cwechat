@@ -63,18 +63,12 @@
 <!--Morris-->
 <script
 	src="${pageContext.request.contextPath}/styles/assets/morris.js-0.4.3/morris.min.js"></script>
-<!-- MORRIS JS -->
-<script
-	src="${pageContext.request.contextPath}/styles/assets/morris.js-0.4.3/raphael-min.js"></script>
 <!-- MORRIS  JS -->
 <script src="${pageContext.request.contextPath}/js/chart.js"></script>
 <!-- CHART JS -->
 <!--Calendar-->
 <script src="${pageContext.request.contextPath}/js/calendar/clndr.js"></script>
 <!-- CALENDER JS -->
-<script
-	src="${pageContext.request.contextPath}/js/calendar/evnt.calendar.init.js"></script>
-<!-- CALENDER EVENT JS -->
 <!-- CALENDER MOMENT JS -->
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>

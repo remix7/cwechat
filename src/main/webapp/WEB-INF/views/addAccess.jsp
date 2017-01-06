@@ -100,7 +100,7 @@
                      <div class="form-group has-warning">
                         <label class="col-lg-2 control-label"><fmt:message key="i18n.OriginalId"/> </label>
                         <div class="col-lg-10">
-                           <input type=text name="originalId" value="${access.OriginalId}"  class="form-control">
+                           <input type=text name="originalId" value="${access.originalId}"  class="form-control">
                            <p class="help-block"><fmt:message key="i18n.info.OriginalId"/></p>
                            <p class="help-block">${originalId}</p>
                         </div>

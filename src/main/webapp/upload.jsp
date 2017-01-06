@@ -9,10 +9,9 @@
 </head>
 <body>
 <%--  上传要修改type  --%>
-	<form action="https://api.weixin.qq.com/cgi-bin/media/upload?access_token=duz7yJOOiMggC6q8OgGIzqBVunakQhokx2qPkpEwiBSQs-CaqGAhalG2LJu4HnwMooPmm1xGjtLKBRKC0h8uJ9cP1ejwrYJrt9Yhg6K2ay_gjCzAJzoQgpHq50FaY-QjTAWgABAWDZ&type=video" enctype="multipart/form-data" method="post">		
-		
-		<input type="file" name="media" />
-		<input type="submit" ></input>
+	<form action="fileUpload" enctype="multipart/form-data" method="post">		
+		<input type="file" name="media" id="media" />
+		<input type="submit" />
 	</form>
 </body>
 </html>
