@@ -30,8 +30,22 @@ public class CwechatAccess implements Serializable {
 	private Date accessDate;
 	// 是否连接成功
 	private String isTrue;
+	/*
+	 *公众号的原始id
+	 */
+	@NotEmpty
+	private String originalId;
 	// 操作用户id
 	private String userId;
+	
+	
+	public String getOriginalId() {
+		return originalId;
+	}
+
+	public void setOriginalId(String originalId) {
+		this.originalId = originalId;
+	}
 
 	public String getId() {
 		return id;

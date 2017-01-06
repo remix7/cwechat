@@ -17,5 +17,5 @@ public interface ReplayWechatMessageMapper {
 	void update(ReplayWechatMessage message);
 	ReplayWechatMessage findById(String id);
 	List<ReplayWechatMessage> findAll();
-	List<ReplayWechatMessage> findByUserId(String userId);
+	ReplayWechatMessage findByReceiveId(String receiveId);
 }

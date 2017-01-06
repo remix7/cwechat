@@ -73,8 +73,7 @@ public class ReplayWechatMessage implements Serializable {
 	/*
 	 * 操作用户的id
 	 */
-	private String userId;
-	
+	private String receiveId;
 
 	public String getId() {
 		return id;
@@ -196,11 +195,12 @@ public class ReplayWechatMessage implements Serializable {
 		this.articleCount = articleCount;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getReceiveId() {
+		return receiveId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setReceiveId(String receiveId) {
+		this.receiveId = receiveId;
 	}
+
 }

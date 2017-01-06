@@ -46,9 +46,9 @@
 		SELECT * FROM
 		c_receive_wechat_message
 	</select>
-	<select id="findAllByUserId" resultMap="baseResultMap" parameterType="string">
+	<select id="findAllByToUserName" resultMap="baseResultMap" parameterType="string">
 		SELECT * FROM
-		c_receive_wechat_message WHERE userId=#{userId}
+		c_receive_wechat_message WHERE toUserName=#{toUserName}
 	</select>
 
 </mapper>

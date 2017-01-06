@@ -9,16 +9,17 @@
 		<result property="encodingAESKey" column="encodingAESKey"/>
 		<result property="accessDate" column="accessDate" />
 		<result property="isTrue" column="isTrue" />
+		<result property="originalId" column="originalId"/>
 		<result property="userId" column="userId"/>
 	</resultMap>
 	<insert id="insert" parameterType="CwechatAccess">
-		INSERT INTO c_cwechat_access(id,appid,secret,encodingAESKey,accessDate,isTrue,userId) VALUES (#{id},#{appid},#{secret},#{encodingAESKey},#{accessDate},#{isTrue},#{userId})
+		INSERT INTO c_cwechat_access(id,appid,secret,encodingAESKey,accessDate,isTrue,originalId,userId) VALUES (#{id},#{appid},#{secret},#{encodingAESKey},#{accessDate},#{isTrue},#{originalId},#{userId})
 	</insert>
 	<delete id="delete" parameterType="string">
 		DELETE FROM c_cwechat_access WHERE id='#{id}'
 	</delete>
 	<update id="update" parameterType="CwechatAccess">
-		UPDATE c_cwechat_access SET appid=#{appid},secret=#{secret},encodingAESKey=#{encodingAESKey},accessDate=#{accessDate},isTrue=#{isTrue},userId=#{userId} WHERE id='${id}'
+		UPDATE c_cwechat_access SET appid=#{appid},secret=#{secret},encodingAESKey=#{encodingAESKey},accessDate=#{accessDate},isTrue=#{isTrue},originalId=#{originalId},userId=#{userId} WHERE id='${id}'
 	</update>
 	<select id="findById" parameterType="string" resultMap="baseResultMap">
 		SELECT * FROM c_cwechat_access WHERE id='#{id}'
